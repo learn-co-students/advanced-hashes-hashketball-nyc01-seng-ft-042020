@@ -124,8 +124,8 @@ end
           game_hash.each do |home, points|
             points[:players].each do |players|
              return players[:points]if players[:player_name]==game
-          end
-       end
+    end
+   end
     end
                   
 
@@ -133,9 +133,9 @@ def shoe_size(game1)
      game_hash.each do |away, kicks|
         kicks[:players].each do |player|
           return player[:shoe]if player[:player_name]==game1
-          end
-       end
-    end
+   end
+   end
+  end
                     
                     
 def team_colors(team)
@@ -143,15 +143,15 @@ def team_colors(team)
               return game_hash[:home][:colors]
                else 
             return game_hash[:away][:colors]
-         end
-      end
+  end
+   end
 
 
 def team_names
       game_hash.map  do |info,array|
         array[:team_name]
-        end
-      end
+   end
+   end
 
   
 def player_numbers(game)
@@ -169,12 +169,12 @@ def player_stats(game)
   ####get the player stats 
    game_hash.each do |home, points| ##digging into first hash
           points.each do |away, array|
-               if away == :players
-                   array.each do |player|
-                   if game == player[:player_name]
-                 player.delete(:player_name)
-                       return player     
-                       end
+            if away == :players
+               array.each do |player|
+                if game == player[:player_name]
+                player.delete(:player_name)
+                  return player     
+         end
     end
      end
       end
