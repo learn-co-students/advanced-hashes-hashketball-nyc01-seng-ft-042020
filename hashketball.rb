@@ -150,7 +150,7 @@ def team_colors(team)
 def team_names
       game_hash.map  do |info,array|
         array[:team_name]
-         end
+        end
       end
 
   
@@ -159,10 +159,10 @@ def player_numbers(game)
       if map2[:team_name] == game
         return map2[:players].map do |player| 
            player[:number] 
-          end
-        end
-      end
+     end
     end
+  end
+ end
 
 
 def player_stats(game)
@@ -173,13 +173,13 @@ def player_stats(game)
                    array.each do |player|
                    if game == player[:player_name]
                  player.delete(:player_name)
-                       return player
-                    end
-                end
-             end
-          end
-       end
+                       return player     
+                       end
     end
+     end
+      end
+   end
+  end
 def big_shoe_rebounds
   shoe = 0
   rebounds = ""
