@@ -59,6 +59,24 @@ def num_points_scored (player_name)
     end
     
   end
+
+  nba_match
+end 
+
+# In these codes below, you must use EXPLICIT RETURN. IMPLICIT RETURN WON'T WORK
+
+def num_points_scored (player_name)
+  game_hash.each do |place_name, team|
+    
+    team[:players].each do |player|
+      
+      if player[:player_name] == player_name
+        return player[:points]
+      end
+      
+    end
+    
+  end
 end 
 
 
@@ -76,6 +94,33 @@ def shoe_size(player_name)
   end 
 end 
 
+
+def team_colors(team_name)
+  game_hash.each do |place_name, team|
+    
+      if team[:team_name] == team_name
+        return team[:colors]
+      end 
+      
+  end
+end 
+      
+
+def shoe_size(player_name)
+  game_hash.each do |place_name, team|
+    
+    team[:players].each do |player|
+      
+      if player[:player_name] == player_name
+        return player[:shoe]
+      end 
+      
+    end 
+    
+  end 
+end 
+
+
 def team_colors(team_name)
   game_hash.each do |place_name, team|
     
@@ -91,8 +136,24 @@ def team_names
   teams_array = []
 
   game_hash.each do |place_name, team|
-  teams_array << team[:team_name].to_s
+  teams_array << team[:team_name]
   end   
   
   teams_array
+end 
+
+
+def player_numbers(team_name)
+  jersey_nums = []
+  
+  game_hash.each do |place_name, team|
+
+    if team[:team_name] == team_name
+      team[:players].each do |stats|
+        jersey_nums << stats[:number]
+      end 
+    end 
+  end
+  
+  jersey_nums
 end 
