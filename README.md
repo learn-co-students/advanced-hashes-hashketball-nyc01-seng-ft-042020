@@ -1,4 +1,12 @@
-# Hashketball
+def team_colors(team_name)
+  game_hash.each do |place_name, team|
+  end 
+  
+  if team[:team_name] == team_name
+    return team[:colors]
+  end 
+
+end # Hashketball
 
 ## Learning Goals
 
