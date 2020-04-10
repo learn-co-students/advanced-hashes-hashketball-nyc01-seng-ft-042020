@@ -127,3 +127,74 @@ def game_hash
 end
 
 # Write code here
+
+def num_points_scored(player)
+ game_hash.each do |item|
+  item[1][:players].each_with_index do |p,i|   
+    if(p[:player_name]==player)
+      return p[:points]
+    end
+  end 
+ end
+end 
+
+def shoe_size(player)
+ game_hash.each do |item|
+  item[1][:players].each_with_index do |p,i|   
+    if(p[:player_name]==player)
+      return p[:shoe]
+    end
+  end 
+ end
+end 
+
+def team_colors(team)
+  game_hash.each do |item|
+    if(item[1][:team_name]==team)
+      return item[1][:colors]
+    end
+  end 
+end
+
+def team_names()
+  return[game_hash[:home][:team_name],game_hash[:away][:team_name]]
+end
+
+def player_numbers(team)
+  nums=[]
+  game_hash.each do |item|
+    if(item[1][:team_name]==team)
+      item[1][:players].each do |player|
+        nums.push(player[:number])
+      end
+    end
+  end
+  nums
+end
+
+def player_stats(player)
+   game_hash.each do |item|
+  item[1][:players].each_with_index do |p,i|   
+    if(p[:player_name]==player)
+      return p
+    end
+  end 
+ end
+end
+
+def big_shoe_rebounds
+  max=[0,'']
+  game_hash.each do |item|
+    item[1][:players].each_with_index do |p,i|   
+      if(p[:shoe]>max[0])
+        max[0] = p[:shoe]
+        max[1] = p[:rebounds]
+      end
+    end 
+  end
+  max[1]
+end
+
+
+
+
