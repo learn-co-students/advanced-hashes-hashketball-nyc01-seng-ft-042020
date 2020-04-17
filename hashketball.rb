@@ -1,4 +1,5 @@
 # Write your code below game_hash
+require "pry"
 def game_hash
   {
     home: {
@@ -126,4 +127,113 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player_name)
+  game_hash.each do |place, team|
+    team.each do |key, value|
+      
+      if  key == :players
+      value.each do |player|
+        
+         if player[:player_name] == player_name
+         return player[:points]
+       end
+      end
+     end
+    end
+  end
+end
+
+def shoe_size(player_name)
+  game_hash.each do |place, team|
+    team.each do |key, value|
+      
+      if key == :players
+         value.each do |player|
+           
+          if player[:player_name] == player_name
+          return player[:shoe]
+        end
+       end
+      end
+    end
+  end
+end
+
+def team_colors(team_name)
+  game_hash.each do |place, team|
+    if team[:team_name] == team_name
+      return team[:colors]
+    end
+  end
+end
+
+def team_names
+  game_hash.collect do |place, team|
+     team[:team_name]
+  end
+end
+
+def player_numbers(team_name)
+  player_number = []
+  game_hash.each do |place, team|
+
+    if team[:team_name] == team_name
+      team.each do |key, value|
+        
+        if key == :players
+          value.each do |player|
+             player_number << player[:number]
+          end
+        end
+      end
+    end
+  end
+  
+  player_number
+end
+
+
+def player_stats(player_name)
+  # stats = {}
+  game_hash.each do |place, team|
+    team.each do |key, value|
+      
+      if key == :players
+        value.each do |player|
+          
+          if  player[:player_name] == player_name
+            return player
+            # stats = player.delete_if do |k, v|
+            #   k == :player_name
+              
+            # end
+          end
+        end
+      end
+    end
+  end
+
+  # stats
+end
+
+
+def big_shoe_rebounds
+  max_shoe = 0
+  num_rebounds = 0
+  game_hash.each do |place, team|
+    team.each do |key, value|
+
+      if key == :players
+      value.each do |player|
+        
+        if player[:shoe] > max_shoe
+          max_shoe = player[:shoe]
+          num_rebounds = player[:rebounds]
+        end
+       end
+      end
+    end
+  end
+  
+  num_rebounds
+end
