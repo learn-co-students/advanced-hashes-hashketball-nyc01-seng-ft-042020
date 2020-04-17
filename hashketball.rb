@@ -196,13 +196,6 @@ def player_stats(name)
   stats
 end
 
-# def assign_player
-#   player = game_hash.each do |location, info|
-#     binding.pry
-#     info[:players].each do |element|
-#     end
-#   end
-# end
 
 def big_shoe_rebounds
   shoe_size = 0 
