@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -126,4 +128,167 @@ def game_hash
   }
 end
 
+#-------------------------------------------------------------------------------------------
 # Write code here
+
+
+##team_side
+# {
+#
+#      #team_data
+#   home: {
+#     team_name: "Brooklyn Nets",
+#     colors: ["Black", "White"],
+#     players: [
+#------>player
+#       {
+#-------->stats
+#---------------------->name_string
+#         player_name: "Alan Anderson",
+#         number: 0,
+#         shoe: 16,
+#         points: 22,
+#         rebounds: 12,
+#         assists: 12,
+#         steals: 3,
+#         blocks: 1,
+#         slam_dunks: 1
+#       }
+#
+#         team_side team_data player  stats => name_string
+#   game_hash[:home][:players][0][:player_name]
+# => "Alan Anderson"
+#
+
+# crack down into hash to reach player name
+# turn player name into key
+
+# make stats hash without name
+
+
+# write your code here!
+
+def num_points_scored(player_name)
+    # if player_name == TK name
+    # return points
+  game_hash.each do |team_side_key, team_data_value|
+    team_data_value[:players].each do |player, stats|
+      if player[:player_name] == player_name
+
+        return player[:points]
+
+      end
+    end
+  end
+end
+
+def shoe_size(player_name)
+    # if player_name == TK name
+    # return :shoe
+  game_hash.each do |team_side_key, team_data_value|
+    team_data_value[:players].each do |player, stats|
+      if player[:player_name] == player_name
+
+        return player[:shoe]
+
+      end
+    end
+  end
+end
+
+def team_colors(team_name)
+    # if team name
+    # return array of team colors
+  game_hash.each do |team_side_key, team_data|
+    if team_data[:team_name] == team_name
+
+      return team_data[:colors]
+
+    end
+  end
+end
+
+
+def team_names
+    #return array of team names
+names = []
+
+  game_hash.each do |team_side_key, team_data|
+    names << team_data[:team_name]
+  end
+  
+names
+end
+
+def player_numbers(team_name)
+    # if team name
+    # return Array of jersey numbers 
+
+jersey_numbers = []
+
+  game_hash.each do |team_side_key, team_data_value|
+    team_data_value[:players].each do |player, stats|
+      if team_data_value[:team_name] == team_name
+        
+        jersey_numbers << player[:number]
+    
+      end
+    end
+  end
+  
+jersey_numbers
+end
+
+def player_stats(player_name)
+    # if player name == TK name
+    # return hash of stats
+
+# player_stats = {}
+
+  game_hash.each do |team_side_key, team_data_value|
+    team_data_value[:players].each do |player, stats|    
+      if player[:player_name] == player_name
+   #       binding.pry
+   #     player_stats << player.except(:player_name)
+          
+          return player
+  
+      end
+    end
+  end
+
+# player_stats
+end
+
+
+def big_shoe_rebounds
+  
+  # find biggest shoe
+  # return rebound of biggest shoe
+  
+  big_shoe = 0
+  rebounds = 0
+  
+  game_hash.each do |team_side_key, team_data_value|
+    team_data_value[:players].each do |player, stats|
+      if player[:shoe] > big_shoe
+        
+        big_shoe = player[:shoe]
+        
+        rebounds = player[:rebounds]
+          
+      end  
+    end
+  end
+  
+      return rebounds
+      
+end
+
+
+
+
+
+
+
+
