@@ -199,7 +199,7 @@ end
 
 def big_shoe_rebounds
   shoe_size = 0 
-  rebounds = 0
+  rebounds = 0.0
   game_hash.each do |location, info|
     info[:players].each do |element|
       if element[:shoe] > shoe_size
@@ -211,9 +211,61 @@ def big_shoe_rebounds
   rebounds
 end
 
+def most_points_scored
+  points = 0 
+  player = ""
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:points] > points
+         points = element[:points]
+          player = element[:player_name]
+      end
+    end
+  end
+  player
+end
 
-# rspec spec/hashketball_spec.rb -e big_shoe_rebounds
+def winning_team
+  points = 0 
+  team = ""
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:points] > points
+         points = element[:points]
+         team = info[:team_name]
+      end
+    end
+  end
+  team
+end
 
+def player_with_longest_name
+  name_length = 0
+  player = ""
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:player_name].length > name_length
+        name_length = element[:player_name].length
+        player = info[:player_name]
+      end
+    end
+  end
+  player
+end
 
-
-
+def long_name_steals_a_ton?
+  bool = false
+  steals = 0
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:steals] > steals
+         steals = element[:steals]
+         if player_with_longest_name == steals
+           bool = true
+         end
+      end
+    end
+  end
+  bool
+end
+  
