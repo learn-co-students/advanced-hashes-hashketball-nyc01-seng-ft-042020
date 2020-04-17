@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -126,4 +128,99 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player)
+  player_score = 0
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:player_name] == player
+        player_score = element[:points]
+      end
+    end
+  end
+  player_score
+end
+
+def shoe_size(player)
+  player_shoe_size = 0
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:player_name] == player
+        player_shoe_size = element[:shoe]
+      end
+    end
+  end
+  player_shoe_size
+end
+
+def team_colors(team)
+  colors = []
+  game_hash.each do |location, info|
+    if info[:team_name] == team
+      info[:colors].each do |color|
+        colors << color
+      end
+    end
+  end
+  colors
+end
+
+def team_names
+  teams = []
+  game_hash.each do |location, info|
+    teams << info[:team_name]
+  end
+  teams
+end
+
+def player_numbers(team)
+  jersey_numbers = []
+  game_hash.each do |location, info|
+    if info[:team_name] == team
+      info[:players].each do |value|
+        jersey_numbers << value[:number]
+      end
+    end
+  end
+  jersey_numbers
+end
+
+def player_stats(name)
+  stats = {}
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:player_name] == name
+        stats = element
+      end
+    end
+  end
+  stats
+end
+
+# def assign_player
+#   player = game_hash.each do |location, info|
+#     binding.pry
+#     info[:players].each do |element|
+#     end
+#   end
+# end
+
+def big_shoe_rebounds
+  shoe_size = 0 
+  rebounds = 0
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:shoe] > shoe_size
+         shoe_size = element[:shoe]
+          rebounds = element[:rebounds]
+      end
+    end
+  end
+  rebounds
+end
+
+
+# rspec spec/hashketball_spec.rb -e big_shoe_rebounds
+
+
+
+
