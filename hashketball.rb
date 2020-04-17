@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+require './hashketball.rb'
 def game_hash
   {
     home: {
@@ -127,3 +129,107 @@ def game_hash
 end
 
 # Write code here
+def num_points_scored(player_name)
+  hashketball = game_hash
+  counter = 0
+  while counter < 5 do
+    if hashketball[:home][:players][counter][:player_name] == player_name
+      return hashketball[:home][:players][counter][:points]
+    end
+    if hashketball[:away][:players][counter][:player_name] == player_name
+      return hashketball[:away][:players][counter][:points]
+    end
+    counter += 1
+  end
+end
+
+def shoe_size(player_name)
+  hashketball = game_hash
+  counter = 0
+  while counter < 5 do
+    if hashketball[:home][:players][counter][:player_name] == player_name
+      return hashketball[:home][:players][counter][:shoe]
+    end
+    if hashketball[:away][:players][counter][:player_name] == player_name
+      return hashketball[:away][:players][counter][:shoe]
+    end
+    counter += 1
+  end
+end
+
+def team_colors(team_name)
+  hashketball = game_hash
+    if hashketball[:home][:team_name] == team_name
+      return hashketball[:home][:colors]
+    end
+    if hashketball[:away][:team_name] == team_name
+      return hashketball[:away][:colors]
+    end
+end
+
+
+def team_names
+  hashketball = game_hash
+  [hashketball[:home][:team_name], hashketball[:away][:team_name]]
+end
+
+def player_numbers(team_name)
+  hashketball = game_hash
+  output = []
+  if team_name == hashketball[:home][:team_name]
+    hashketball[:home][:players].each do |player_stat|
+      output << player_stat[:number]
+    end
+  end
+  if team_name == hashketball[:away][:team_name]
+    hashketball[:away][:players].each do |player_stat|
+      output << player_stat[:number]
+    end
+  end
+  output
+end
+
+def player_stats(player_name)
+  hashketball = game_hash
+  counter = 0
+  while counter < 5 do
+    if hashketball[:home][:players][counter][:player_name] == player_name
+      return hashketball[:home][:players][counter]
+    end
+    if hashketball[:away][:players][counter][:player_name] == player_name
+      return hashketball[:away][:players][counter]
+    end
+    counter += 1
+  end
+end
+
+def big_shoe_rebounds
+  hashketball = game_hash
+  biggest_shoe_size = hashketball[:home][:players][0][:shoe]
+  counter = 0
+  while counter < 5 do
+    if hashketball[:home][:players][counter][:shoe] > biggest_shoe_size
+      biggest_shoe_size = hashketball[:home][:players][counter][:shoe]
+    end
+    counter += 1
+  end
+
+  counter = 0
+  while counter < 5 do
+    if hashketball[:away][:players][counter][:shoe] > biggest_shoe_size
+      biggest_shoe_size = hashketball[:home][:players][counter][:shoe]
+    end
+    counter += 1
+  end
+
+  counter_2 = 0
+  while counter_2 < 5 do
+    if hashketball[:home][:players][counter_2][:shoe] == biggest_shoe_size
+      return hashketball[:home][:players][counter_2][:rebounds]
+    end
+    if hashketball[:away][:players][counter_2][:shoe] == biggest_shoe_size
+      return hashketball[:away][:players][counter_2][:rebounds]
+    end
+    counter_2 += 1
+  end
+end
