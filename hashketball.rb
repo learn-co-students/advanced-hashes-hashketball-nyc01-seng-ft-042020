@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require 'pry'
+
 def game_hash
   {
     home: {
@@ -126,4 +128,144 @@ def game_hash
   }
 end
 
-# Write code here
+def num_points_scored(player)
+  player_score = 0
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:player_name] == player
+        player_score = element[:points]
+      end
+    end
+  end
+  player_score
+end
+
+def shoe_size(player)
+  player_shoe_size = 0
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:player_name] == player
+        player_shoe_size = element[:shoe]
+      end
+    end
+  end
+  player_shoe_size
+end
+
+def team_colors(team)
+  colors = []
+  game_hash.each do |location, info|
+    if info[:team_name] == team
+      info[:colors].each do |color|
+        colors << color
+      end
+    end
+  end
+  colors
+end
+
+def team_names
+  teams = []
+  game_hash.each do |location, info|
+    teams << info[:team_name]
+  end
+  teams
+end
+
+def player_numbers(team)
+  jersey_numbers = []
+  game_hash.each do |location, info|
+    if info[:team_name] == team
+      info[:players].each do |value|
+        jersey_numbers << value[:number]
+      end
+    end
+  end
+  jersey_numbers
+end
+
+def player_stats(name)
+  stats = {}
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:player_name] == name
+        stats = element
+      end
+    end
+  end
+  stats
+end
+
+
+def big_shoe_rebounds
+  shoe_size = 0 
+  rebounds = 0.0
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:shoe] > shoe_size
+         shoe_size = element[:shoe]
+          rebounds = element[:rebounds]
+      end
+    end
+  end
+  rebounds
+end
+
+def most_points_scored
+  points = 0 
+  player = ""
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:points] > points
+         points = element[:points]
+          player = element[:player_name]
+      end
+    end
+  end
+  player
+end
+
+def winning_team
+  points = 0 
+  team = ""
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:points] > points
+         points += element[:points]
+         team = info[:team_name]
+      end
+    end
+  end
+  team
+end
+
+def player_with_longest_name
+  name_length = 0
+  player = ""
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:player_name].length > name_length
+        name_length = element[:player_name].length
+        player = element[:player_name]
+      end
+    end
+  end
+  player
+end
+
+def long_name_steals_a_ton?
+  bool = false
+  steals = 0
+  game_hash.each do |location, info|
+    info[:players].each do |element|
+      if element[:steals] > steals
+         steals = element[:steals]
+         if element[:player_name] == player_with_longest_name
+           bool = true
+         end
+      end
+    end
+  end
+  bool
+end
+  
