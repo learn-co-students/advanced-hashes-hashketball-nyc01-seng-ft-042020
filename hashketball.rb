@@ -126,4 +126,107 @@ def game_hash
   }
 end
 
-# Write code here
+
+def shoe_size(name)
+  #set up variable to track answer
+  ans = 0
+  #iterate through outer hash
+game_hash.each do |k,v|
+  #iterate through nested hash
+v.each do |k1, v1|
+  #iterate through players
+v[:players].each do | k1|
+  #if player_name is equal to name passed, set "ans" to the value assoaicted w the :shoe key.
+  if k1[:player_name] == name
+ans += k1[:shoe]
+#return the answr.
+   return ans
+end
+end
+end
+end
+end
+
+def num_points_scored(name)
+  ans = 0
+game_hash.each do |k,v|
+
+v.each do |k1, v1|
+v[:players].each do | k1|
+  if k1[:player_name] == name
+ans += k1[:points]
+   return ans
+end
+end
+end
+end
+end
+
+def team_colors(name)
+game_hash.each do |k,v|
+if v[:team_name] == name
+return v[:colors]
+end
+end
+end
+
+def team_names
+name_arr = []
+game_hash.each do |k,v|
+name_arr.push(v[:team_name] )
+end
+name_arr
+end
+
+
+def player_numbers(team)
+jersey_num = []
+game_hash.each do |k,v|
+if v[:team_name] == team
+v[:players].each do | element|
+  jersey_num.push(element[:number])
+end
+end
+end
+jersey_num
+end
+
+def player_stats(name)
+ stats = []
+game_hash.each do |k,v|
+v.each do |k1, v1|
+v[:players].each do | k1|
+  if k1[:player_name] == name
+    return k1
+# stats.push(":player_name=>#{k1[:player_name]}, :number => #{k1[:number]},
+# k1[:shoe], k1[:points], k1[:rebounds],k1[:assists],k1[:steals],k1[:blocks], k1[:slam_dunks]")
+#    return stats
+end
+end
+end
+end
+end
+
+
+def big_shoe_rebounds
+  #set up variables to track shoe size and rebound
+ big_shoe = 0
+ rebound = 0
+ #iterate through the hash
+game_hash.each do |k,v|
+  #iterate through the nested hash
+v.each do |k1, v1|
+  #iterate through the players array
+v[:players].each do | k1|
+  #if their shoe size is larger than big_shoe, reset the variable.
+  #set rebounds to the varible in the same hash as larget shoe
+  if k1[:shoe] > big_shoe
+    big_shoe = k1[:shoe]
+    rebound = k1[:rebounds]
+end
+end
+end
+end
+#return rebound number
+rebound
+end
